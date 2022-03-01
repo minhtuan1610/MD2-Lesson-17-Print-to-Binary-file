@@ -10,14 +10,29 @@ public class Main {
         students.add(new Student(3, "Đặng Huy Hoà", "Đà Nẵng"));
         students.add(new Student(4, "Nguyễn Khánh Tùng", "Hà Nội"));
         students.add(new Student(5, "Nguyễn Khắc Nhật", "Hà Nội"));
-        writeToFile("student.txt", students);
-        List<Student> studentDataFromFile = readDataFromFile("student.txt");
+//        writeToFile("student.txt", new Student(6, "Duong", "TPHCM"));
+        writeToFile("duongSeDuongTinh.txt", students);
+        students.add(new Student(7, "Nguyễn Khắc Vieejt", "Hà Nội"));
+        writeToFile("duongSeDuongTinh.txt", students);
+        List<Student> studentDataFromFile = readDataFromFile("duongSeDuongTinh.txt");
         for (Student student : studentDataFromFile) {
             System.out.println(student);
         }
     }
 
     public static void writeToFile(String path, List<Student> students) {
+        try {
+            FileOutputStream fos = new FileOutputStream(path);
+            ObjectOutputStream oos = new ObjectOutputStream(fos);
+            oos.writeObject(students);
+            oos.close();
+            fos.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public static void writeToFile1(String path, Student students) {
         try {
             FileOutputStream fos = new FileOutputStream(path);
             ObjectOutputStream oos = new ObjectOutputStream(fos);
